@@ -121,10 +121,7 @@ class VisualPanel extends PureComponent {
 }
 
 
-async function mountVisualPanel(audioSrc) {
-
-  const audioEl = await renderAudio(audioSrc);
-  
+function mountVisualPanel(audioEl) {
   ReactDOM.render(
     <VisualPanel audioEl={audioEl} audioData={getAudioData(audioEl)}/>, 
     document.getElementById("visual-panel-root")
