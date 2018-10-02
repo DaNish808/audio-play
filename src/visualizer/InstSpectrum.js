@@ -22,7 +22,7 @@ class InstSpectrum extends React.Component {
 
   render() {
     const { audRangePercent } = this.state;
-    const { frequencyData: data } = this.props;
+    const { waveformData: data } = this.props;
 
     return (
       <div>
@@ -32,21 +32,11 @@ class InstSpectrum extends React.Component {
             {data.reduce((str, Hz) => str += Hz, 0)}
           </p>
         </section> */}
-        <section className="raw-data">
+        <section className="wave-data">
           {/* <h2>raw data</h2> */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              height: '25vh',
-              width: '100%'
-            }}>
+            <div>
               {data.map((hz, i) => {
-                return <div key={i} style={{ 
-                  display: 'inline-block',
-                  width: `${audRangePercent}%`,
-                  height: `${hz / 255 * 100}%`,
-                  backgroundColor: `hsl(${105 + hz}, 100%, 50%)`
-                }}></div>
+                return hz
               })}
             </div>
         </section>

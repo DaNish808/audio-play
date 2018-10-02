@@ -3,12 +3,16 @@
   display: grid;
   grid-template-columns: 90% 10%;
   grid-template-rows: 15% 1fr;
-  grid-template-areas: 
+  grid-template-areas:
+    /* "wave   wave"  */
     "roller info"
     "roller range"
   ;
 }
 
+.wave-data {
+  grid-area: wave;
+}
 
 .roller-spectrum {
   grid-area: roller;

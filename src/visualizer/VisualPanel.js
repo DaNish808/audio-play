@@ -9,6 +9,7 @@ import { renderAudio, changeAudioSrc, getAudioData } from './audio-setup';
 import * as d3 from 'd3';
 
 import '../styles/VisualPanel.css';
+import InstSpectrum from "./InstSpectrum";
 
 class VisualPanel extends PureComponent {
   constructor() {
@@ -87,7 +88,8 @@ class VisualPanel extends PureComponent {
 
   render() {
     const { 
-      frequencyData, audioIsPlaying, 
+      waveformData, frequencyData, 
+      audioIsPlaying, 
       spectrumStart, spectrumEnd,
       updateEventName 
     } = this.state;
