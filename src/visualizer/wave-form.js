@@ -30,19 +30,6 @@ function initWaveform() {
   document.addEventListener(audioUpdateEvent, () => {
     pathEl.attr('d', pathData(waveformData));
   });
-
-  const range = [128, 128]; // [35, 220]
-  let i = 0;
-  document.addEventListener(audioUpdateEvent, () => {
-    const min = waveformData.reduce((min, n) => range[0] < min ? range[0] : min);
-    const max = waveformData.reduce((max, n) => range[1] > max ? range[1] : max);
-    if(min < range[0] || max > range[1]) {
-      range[0] = min;
-      range[1] = max;
-      console.log(i + ':', range);
-    }
-    i++;
-  });
 }
 
 

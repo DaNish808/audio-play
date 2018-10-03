@@ -8,23 +8,23 @@ const audioData = {
   audioUpdateEvent: 'audioDataUpdate'
 };
 
-async function renderAudioEl(src) {
+async function renderAudioEl(filename) {
 
   d3.select('#audio-el-root')
-  .append('audio').attr('id', 'target-audio')
-  .attr('src', await getPath(src))
-  .attr('crossorigin', 'anonymous')
-  .attr('controls', true)
-  .style('width', '100%')
+    .append('audio').attr('id', 'target-audio')
+    .attr('src', await getPath(filename))
+    .attr('crossorigin', 'anonymous')
+    .attr('controls', true)
+    .style('width', '100%')
   // .attr('autoplay')
   
   const audioEl = document.getElementById('target-audio');
   return audioEl;
 }
 
-async function changeAudioSrc(src) {
+async function changeAudioSrc(filename) {
   d3.select('audio#target-audio')
-    .attr('src', await getPath(src));
+    .attr('src', await getPath(filename));
 }
 
 function connectAudioData(audioEl) {

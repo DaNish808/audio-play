@@ -14,8 +14,8 @@ function renderAudioPicker(tracks) {
     .data(tracks).enter()
 
       .append('option')
-      .attr('value', track => track.src)
-      .text(track => track.name);
+      .attr('value', track => track.filename)
+      .text(track => track.trackName);
 
 
   const selectEl = document.querySelector('#track-selection');
