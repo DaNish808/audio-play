@@ -78,7 +78,6 @@ class RollingSpectrum extends PureComponent {
 
   componentDidMount() {
     const { updateEventName, audioEl } = this.props;
-    console.log(this.props)
   
     this.setState(state => ({ 
       ...state, 
