@@ -1,8 +1,8 @@
 import { getAudioData } from './audio-setup.js';
 import * as d3 from 'd3';
 
-function initWaveform() {
-  const { waveformData, audioUpdateEvent } = getAudioData();
+function initWaveform(audioData) {
+  const { waveformData, audioUpdateEvent } = audioData;
   if(!waveformData.length) throw 'initWaveform requires an audio element to function';
   const waveformLength = waveformData.length;
   const svgParams = {

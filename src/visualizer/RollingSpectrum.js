@@ -78,20 +78,21 @@ class RollingSpectrum extends PureComponent {
 
   componentDidMount() {
     const { updateEventName, audioEl } = this.props;
-    
-      this.setState(state => ({ 
-        ...state, 
-        updateEventName,
-        ctx: this.refs.canvas.getContext('2d')
-      }), ( ...args ) => {
-        const { ctx, totalHeight, totalWidth } = this.state;
-        const margin = 20;
-        
-        ctx.fillStyle = 'black';
-        ctx.fillRect(0, 0, totalWidth, totalHeight);
-        
-        audioEl.addEventListener(this.state.updateEventName, this.updateSpectraData);
-      });
+    console.log(this.props)
+  
+    this.setState(state => ({ 
+      ...state, 
+      updateEventName,
+      ctx: this.refs.canvas.getContext('2d')
+    }), ( ...args ) => {
+      const { ctx, totalHeight, totalWidth } = this.state;
+      const margin = 20;
+      
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, totalWidth, totalHeight);
+      
+      audioEl.addEventListener(this.state.updateEventName, this.updateSpectraData);
+    });
   }
   
   render() {

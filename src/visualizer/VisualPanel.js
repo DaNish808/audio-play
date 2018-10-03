@@ -67,11 +67,11 @@ class VisualPanel extends PureComponent {
   }
 
   componentDidMount() {
-    const { audioEl, updateEventName } = this.props;
+    const { audioEl, audioData: { audioUpdateEvent } } = this.props;
 
     this.updateAudioData();
-    if(updateEventName) {
-      this.setState({ ...this.state, updateEventName }, () => {
+    if(audioUpdateEvent) {
+      this.setState({ ...this.state, updateEventName: audioUpdateEvent }, () => {
         audioEl.addEventListener(this.state.updateEventName, this.updateAudioData);
       });
     }
@@ -88,19 +88,17 @@ class VisualPanel extends PureComponent {
 
   render() {
     const { 
-      waveformData, frequencyData, 
-      audioIsPlaying, 
-      spectrumStart, spectrumEnd,
-      updateEventName 
+      frequencyData, 
+      spectrumStart, spectrumEnd
     } = this.state;
-    const { audioEl } = this.props;
+    const { audioEl, audioData: { audioUpdateEvent } } = this.props;
 
     return (
       <section className="visual-panel">
         <RollingSpectrum 
           audioEl={audioEl}
           frequencyData={frequencyData}
-          updateEventName={updateEventName}
+          updateEventName={audioUpdateEvent}
           spectrumStart={spectrumStart}
           spectrumEnd={spectrumEnd}
         />
@@ -121,9 +119,9 @@ class VisualPanel extends PureComponent {
 }
 
 
-function mountVisualPanel(audioEl) {
+function mountVisualPanel(audioEl, audioData) {
   ReactDOM.render(
-    <VisualPanel audioEl={audioEl} audioData={getAudioData()}/>, 
+    <VisualPanel audioEl={audioEl} audioData={audioData}/>, 
     document.getElementById("visual-panel-root")
   );
 }
