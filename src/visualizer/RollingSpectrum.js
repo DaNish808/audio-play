@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 class RollingSpectrum extends PureComponent {
   constructor() {
     super();
-    const totalHeight = 500;
+    const totalHeight = 400;
     const totalWidth = 2000;
     const height = totalHeight * 0.85;
     this.state = {
@@ -100,7 +100,7 @@ class RollingSpectrum extends PureComponent {
     return (
       <canvas className="rolling-spectrum" ref="canvas" width={totalWidth} height={totalHeight} style={{
         width: '100%',
-        height: '85vh'
+        height: '68vh' // keep equal with .visual-panel height
       }}/>
     );
   }

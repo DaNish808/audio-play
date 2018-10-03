@@ -1,7 +1,14 @@
 import * as d3 from 'd3';
 import { getPath } from '../../services/firebase/api.js';
 
-async function renderAudio(src) {
+
+const audioData = {
+  frequencyData: null,
+  waveformData: null,
+  audioUpdateEvent: 'audioDataUpdate'
+};
+
+async function renderAudioEl(src) {
 
   d3.select('#audio-el-root')
   .append('audio').attr('id', 'target-audio')
@@ -20,7 +27,7 @@ async function changeAudioSrc(src) {
     .attr('src', await getPath(src));
 }
 
-function getAudioData(audioEl) {
+function connectAudioData(audioEl) {
   
   let audioIsOn = false;
   
@@ -30,10 +37,8 @@ function getAudioData(audioEl) {
   const analyzer = ctx.createAnalyser();
   audioSrc.connect(analyzer);
 
-  const audioData = {
-    frequencyData: new Uint8Array(analyzer.frequencyBinCount),
-    waveformData: new Uint8Array(analyzer.frequencyBinCount),
-  }
+  audioData.frequencyData = new Uint8Array(analyzer.frequencyBinCount);
+  audioData.waveformData = new Uint8Array(analyzer.frequencyBinCount);
   
 
   audioEl.addEventListener('play', () => {
@@ -50,12 +55,16 @@ function getAudioData(audioEl) {
       analyzer.getByteFrequencyData(audioData.frequencyData);
       analyzer.getByteTimeDomainData(audioData.waveformData);
       document.querySelector('#target-audio')
-              .dispatchEvent(new CustomEvent('audioDataUpdate', { bubbles: true }))
+              .dispatchEvent(new CustomEvent(audioData.audioUpdateEvent, { bubbles: true }))
     }
   }
 
   return audioData;
 }
 
+function getAudioData() {
+  return audioData;
+}
 
-export { renderAudio, changeAudioSrc, getAudioData };
+
+export { renderAudioEl, changeAudioSrc, connectAudioData, getAudioData };

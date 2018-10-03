@@ -123,7 +123,7 @@ class VisualPanel extends PureComponent {
 
 function mountVisualPanel(audioEl) {
   ReactDOM.render(
-    <VisualPanel audioEl={audioEl} audioData={getAudioData(audioEl)}/>, 
+    <VisualPanel audioEl={audioEl} audioData={getAudioData()}/>, 
     document.getElementById("visual-panel-root")
   );
 }

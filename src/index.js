@@ -3,7 +3,7 @@ import './styles/main.css';
 import firebase from '../services/firebase/api.js';
 
 import mountVisualPanel from './visualizer/VisualPanel';
-import { renderAudio } from './visualizer/audio-setup.js';
+import { renderAudioEl, connectAudioData } from './visualizer/audio-setup.js';
 import { renderAudioPicker } from './visualizer/audio-picker';
 import { initWaveform } from './visualizer/wave-form.js';
 
@@ -47,10 +47,11 @@ const audioTracks = [
 ];
 
 async function main() {
-  const audioEl = await renderAudio('ghibli.mp3');
+  const audioEl = await renderAudioEl('ghibli.mp3');
+  connectAudioData(audioEl);
   mountVisualPanel(audioEl);
+  initWaveform(audioEl);
   renderAudioPicker(audioTracks);
-  initWaveform();
 
 }
 
